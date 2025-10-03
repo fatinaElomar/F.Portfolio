@@ -1,0 +1,1 @@
+export default function NoiseBackground(){ return null }
