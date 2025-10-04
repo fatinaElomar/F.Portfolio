@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import PreloaderGif from "../assets/images/loading.gif"; // your GIF path
+import PreloaderGif from "../assets/images/Opener.gif";
 
 const texts = [
-  { text: "Hello, I'm Fatina", bold: true, serif: true },
+  { text: "FATINA     ELOMAR", LETTERSPACING: "1em",  serif: false },
 ];
 
 const container = {
@@ -23,13 +23,23 @@ const child = {
 
 export default function ExtendedPreloader({ onFinish }) {
   const [isComplete, setIsComplete] = useState(false);
+  const [showText, setShowText] = useState(true);
 
   useEffect(() => {
-    const totalDuration = 3000; // hide after 3s
+    // Check if user has already seen the text animation
+    const hasSeen = sessionStorage.getItem("preloaderSeen");
+    if (hasSeen) {
+      setShowText(false);
+    }
+
+    const totalDuration = 12000;
     const timer = setTimeout(() => {
       setIsComplete(true);
       if (onFinish) onFinish();
+      // Mark as seen for future loads
+      sessionStorage.setItem("preloaderSeen", "true");
     }, totalDuration);
+
     return () => clearTimeout(timer);
   }, [onFinish]);
 
@@ -49,17 +59,19 @@ export default function ExtendedPreloader({ onFinish }) {
             animate="show"
             className="text-center space-y-4"
           >
-
-            {/* Text below GIF */}
-            {texts.map((item, index) => (
-              <motion.div
-                key={index}
-                variants={child}
-                className={`${item.bold ? "text-5xl md:text-6xl font-extrabold" : "text-2xl md:text-3xl font-medium text-gray-600"} ${item.serif ? "font-serif" : "font-sans"} text-gray-800 mt-4`}
-              >
-                {item.text}
-              </motion.div>
-            ))}
+            {/* Animated Text (only on first load) */}
+            {showText &&
+              texts.map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={child}
+                  style={{ letterSpacing: item.LETTERSPACING || "normal" }}
+                  className={`${item.bold ? "text-5xl md:text-6xl font-extrabold" : "text-2xl md:text-3xl font-medium text-gray-600"} ${item.serif ? "font-serif" : "font-sans"} text-gray-800 mt-4`}
+                >
+                  {item.text}
+                </motion.div>
+              ))
+            }
 
             {/* GIF Image */}
             <motion.img
@@ -68,11 +80,7 @@ export default function ExtendedPreloader({ onFinish }) {
               variants={child}
               className="w-32 md:w-40 mx-auto"
             />
-
-            
           </motion.div>
-
-         
         </motion.div>
       )}
     </AnimatePresence>
