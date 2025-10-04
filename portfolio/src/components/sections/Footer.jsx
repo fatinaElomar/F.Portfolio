@@ -1,6 +1,7 @@
 import { Linkedin, Github, Instagram } from 'lucide-react'
 import { FaShopify, FaBehance } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'  // ✅ use Link for HashRouter
 import Me from '../../assets/images/me.png'
 
 export default function Footer() {
@@ -9,7 +10,7 @@ export default function Footer() {
   }
 
   const socialLinks = [
-    { Icon: Linkedin, href: 'www.linkedin.com/in/fatina-elomar' },
+    { Icon: Linkedin, href: 'https://www.linkedin.com/in/fatina-elomar' },
     { Icon: Github, href: 'https://github.com/fatinaElomar' },
     { Icon: FaShopify, href: 'https://community.shopify.com/c/user/viewprofilepage/user-id/1930506' },
     { Icon: FaBehance, href: 'https://www.behance.net/fatinaelomar' },
@@ -18,7 +19,6 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="w-full relative overflow-hidden">
-      <div className="bg-transparent px-6 py-16 sm:px-12 flex flex-col sm:flex-row items-center " />
       {/* Top CTA Section */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -48,16 +48,15 @@ export default function Footer() {
           </motion.button>
         </motion.div>
 
-        {/* Image — responsive fix */}
-       <motion.img
-  src={Me}
-  alt="Portfolio showcase"
-  className="w-64 sm:w-[20rem] lg:w-[32rem] relative sm:absolute top-[-28%] left-0 sm:left-[55%] sm:-translate-x-1/2"
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.3, duration: 0.6 }}
-/>
-
+        {/* Image */}
+        <motion.img
+          src={Me}
+          alt="Portfolio showcase"
+          className="w-64 sm:w-[20rem] lg:w-[32rem] relative sm:absolute top-[-28%] left-0 sm:left-[55%] sm:-translate-x-1/2"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        />
       </motion.div>
 
       {/* Middle Grid Section */}
@@ -141,17 +140,21 @@ export default function Footer() {
           >
             F.O
           </motion.div>
+
           <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-white/80">
-            <a href="/">About</a>
-            <a href="/projects">Projects</a>
-            <a href="/resume">Resume</a>
+            {/*  Internal links with HashRouter */}
+            <Link to="/about">About</Link>
+            <Link to="/projects">Projects</Link>
+            <Link to="/resume">Resume</Link>
+            {/* External */}
             <a
-  href="https://wa.me/96171779091"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  Contact
-</a>
+              href="https://wa.me/96171779091"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contact
+            </a>
+           
           </div>
         </div>
         <p className="text-white/70">
