@@ -1,8 +1,8 @@
-import { Linkedin, Github, Instagram } from 'lucide-react';
-import { FaShopify, FaBehance } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom'; // ✅ use Link for HashRouter
-import Me from '../../assets/images/me.png';
+import { Linkedin, Github, Instagram } from "lucide-react";
+import { FaShopify, FaBehance } from "react-icons/fa";
+import { motion } from "framer-motion";
+import Me from "../../assets/images/me.png";
+import { Link } from "react-router-dom"; // <- added
 
 export default function Footer() {
   const contacts = {
@@ -10,18 +10,19 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { Icon: Linkedin, href: 'https://www.linkedin.com/in/fatina-elomar' },
-    { Icon: Github, href: 'https://github.com/fatinaElomar' },
-    { Icon: FaShopify, href: 'https://community.shopify.com/c/user/viewprofilepage/user-id/1930506' },
-    { Icon: FaBehance, href: 'https://www.behance.net/fatinaelomar' },
-    { Icon: Instagram, href: 'https://www.instagram.com/' },
+    { Icon: Linkedin, href: "https://www.linkedin.com/in/fatina-elomar" },
+    { Icon: Github, href: "https://github.com/fatinaElomar" },
+    { Icon: FaShopify, href: "https://community.shopify.com/c/user/viewprofilepage/user-id/1930506" },
+    { Icon: FaBehance, href: "https://www.behance.net/fatinaelomar" },
+    { Icon: Instagram, href: "https://www.instagram.com/" },
   ];
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
+    
     <footer id="contact" className="w-full relative overflow-hidden">
-
+      <div class="p-9"></div>
       {/* Top CTA Section */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -44,7 +45,7 @@ export default function Footer() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => (window.location.href = 'mailto:' + contacts.email)}
+            onClick={() => (window.location.href = "mailto:" + contacts.email)}
             className="mt-6 bg-[#111] text-white px-6 py-3 rounded-md font-medium"
           >
             Let’s Work Together
@@ -64,7 +65,6 @@ export default function Footer() {
 
       {/* Middle Grid Section */}
       <div className="grid grid-cols-1 sm:grid-cols-3 text-black">
-
         {/* Social */}
         <motion.div
           whileHover={{ backgroundColor: "#e1cbb9" }}
@@ -146,12 +146,15 @@ export default function Footer() {
           </motion.div>
 
           <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-white/80">
-            {/* Internal links with HashRouter */}
-            <Link to="/about" onClick={scrollToTop}>About</Link>
-            <Link to="/projects" onClick={scrollToTop}>Projects</Link>
-            <Link to="/resume" onClick={scrollToTop}>Resume</Link>
-
-            {/* External */}
+            <Link to="/about" onClick={scrollToTop}>
+              About
+            </Link>
+            <Link to="/projects" onClick={scrollToTop}>
+              Projects
+            </Link>
+            <Link to="/resume" onClick={scrollToTop}>
+              Resume
+            </Link>
             <a
               href="https://wa.me/96171779091"
               target="_blank"

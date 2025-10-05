@@ -57,7 +57,7 @@ export default function Hero() {
 >
  
 
-          Hey, I’m <span className="text-[#a678f6]">Fatina</span>!
+          Hey, I’m Fatina
         </motion.h1>
 
         {/* Subtitle */}
