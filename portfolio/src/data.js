@@ -322,7 +322,7 @@ export const data = {
     category: "React",
     summary: "Lebanese cleaning company site built with React for booking and services.",
     github: "https://github.com/yourusername/cleantime",
-    link: "https://info-cleantime.vercel.app/",
+    link: "https://cleantimes.netlify.app/",
     image: clean,
     tags: ["React", "JavaScript", "Cleaning Services", "Lebanon"]
   },
